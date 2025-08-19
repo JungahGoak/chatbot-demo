@@ -1,16 +1,80 @@
-# Compiled class file
-*.class
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# Log file
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Log files
 *.log
 
-# BlueJ files
-*.ctxt
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Virtual machine crash logs
+hs_err_pid*
 
-# Package Files #
+# Spring Boot
+target/
+
+# Application properties with sensitive data
+application-local.properties
+application-dev.properties
+#**/application.properties
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Package Files
 *.jar
 *.war
 *.nar
@@ -18,7 +82,3 @@
 *.zip
 *.tar.gz
 *.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
