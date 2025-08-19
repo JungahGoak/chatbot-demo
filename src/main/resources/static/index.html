@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>Spring AI Streaming</title>
+    <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #output { border: 1px solid #ddd; padding: 8px; min-height: 200px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+<h2>Spring AI Streaming Test</h2>
+<input id="inputGoal" placeholder="목표 입력 (예: 운동)" />
+<button onclick="startStream()">Start</button>
+
+<div id="output"></div>
+
+<script>
+    function startStream() {
+      const goal = document.getElementById("inputGoal").value;
+      const output = document.getElementById("output");
+      output.textContent = "";     // reset
+
+      const es = new EventSource("http://localhost:8080/stream?goal=" + encodeURIComponent(goal));
+      es.onmessage = (e) => {
+        output.textContent += e.data; // 누적해서 보여줌
+      };
+      es.onerror = (e) => {
+        console.error("EventSource error:", e);
+        es.close();
+      };
+    }
+  </script>
+</body>
+</html>

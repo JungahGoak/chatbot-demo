@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
-import java.util.stream.Collectors;
-
 @RestController
 public class ChatController {
 
@@ -33,7 +31,7 @@ public class ChatController {
 
         return this.chatClient.prompt()
                 .user(u -> u
-                        .text("{goal}를 달성할 세부 목표 5개 짜줘")
+                        .text("{goal}를 달성할 세부 할  5개 짜줘")
                         .param("goal", goal))
                 .stream()
                 .content();
