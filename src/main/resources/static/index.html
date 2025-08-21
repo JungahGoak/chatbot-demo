@@ -11,25 +11,32 @@
 <body>
 <h2>Spring AI Streaming Test</h2>
 <input id="inputGoal" placeholder="목표 입력 (예: 운동)" />
+<input id="inputConvId" placeholder="conversationId 입력" />
 <button onclick="startStream()">Start</button>
 
 <div id="output"></div>
 
 <script>
-    function startStream() {
-      const goal = document.getElementById("inputGoal").value;
-      const output = document.getElementById("output");
-      output.textContent = "";     // reset
+  function startStream() {
+    const goal = document.getElementById("inputGoal").value;
+    const convId = document.getElementById("inputConvId").value;
+    const output = document.getElementById("output");
+    output.textContent = ""; // reset
 
-      const es = new EventSource("http://localhost:8080/stream?goal=" + encodeURIComponent(goal));
-      es.onmessage = (e) => {
-        output.textContent += e.data; // 누적해서 보여줌
-      };
-      es.onerror = (e) => {
-        console.error("EventSource error:", e);
+    const url = `http://localhost:8080/stream?goal=${encodeURIComponent(goal)}&conversationId=${encodeURIComponent(convId)}`;
+    const es = new EventSource(url);
+    es.onmessage = (e) => {
+      output.textContent += e.data;
+    };
+    es.onerror = (e) => {
+      if (es.readyState === EventSource.CLOSED) {
+      console.log("스트림 정상 종료");
+        } else {
+          console.error("EventSource error:", e);
+        }
         es.close();
-      };
-    }
-  </script>
+    };
+  }
+</script>
 </body>
 </html>
